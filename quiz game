@@ -1,0 +1,210 @@
+ #include<stdio.h>  
+#include<stdlib.h>  
+#include<conio.h>  
+  
+struct play {  
+            char name[20];  
+            int score;  
+            int rat;       
+}p;  
+ 
+void start();  
+void help();  
+  
+void main()  
+{  
+    clrscr();  
+       int chc=0;  
+  
+    printf("Press 1 to start the game  \nPress 2 to see game help\nPress 0 to exit :   ");  
+    scanf("%d",&chc);  
+  
+    switch(chc)  
+    {  
+        case 1:  
+        start();  
+        break;  
+  
+          
+  
+        case 2:  
+        help();  
+        break;  
+  
+          default:  
+          exit(1);  
+    }  
+  
+  getch();  
+}  
+  
+void help()  
+{  
+     int ch;  
+  
+     printf("\n\n  GAME HELP ");  
+     printf("\n -------------------------------------------------------------------------");  
+      
+     printf("\n >> There will be a total of 5 questions");  
+     printf("\n >> You will be given 4 options and you have to press 1, 2 ,3 or 4 for the right option");  
+       
+     printf("\n >> Each question will carry 5 points");  
+     
+     printf("\n >> There is no negative marking for wrong answer");  
+  
+    printf("\n\n                     ALL THE BEST                     \n\n");  
+  
+  
+   
+}  
+  
+void start()  
+{  
+          int ans;  
+          int count=0;  
+          char rating[20];  
+  
+          FILE *fp;  
+  
+          if((fp=fopen("\\tmp\play2.txt","a"))==NULL)  
+             {  
+                 printf("error opening file\n");  
+             }  
+  
+  
+        printf("\nPlease enter your name: ");  
+        scanf("%s",p.name);  
+  
+  
+  
+  
+        printf("Welcome \" %s \"  to  Quiz Game  \n\n", p.name);  
+  
+  
+        printf("Q(1).Which one is the first fully supported 64 bit operating system \n 1.Windows vista \t\t2.Mac\n 3.Linux\t\t 4.None of the above\n\n");  
+  
+        printf("Your answer: ");  
+        scanf("%d",&ans);  
+  
+        if(ans==3)  
+        {  
+            printf("Correct! 5 points\n\n");  
+            ++count;  
+  
+        }  
+        else  
+        {  
+            printf("Wrong answer! Correct answer is 3.Linux\n\n");  
+        }  
+  
+        printf("Q(2) Computer Hard Disk was first introduced in 1956 by  \n 1.Dell\t\t2.Apple \n3.Microsoft\n4.IBM\n\n");  
+        printf("Your answer: ");  
+        scanf("%d",&ans);  
+  
+        if(ans==4)  
+        {  
+            printf("Correct! +5 points\n\n");  
+  
+                ++count;  
+  
+        }  
+        else  
+        {  
+            printf("Wrong answer! Correct answer is 4.IBM\n\n");  
+        }  
+  
+        printf("Q(3) Which of the following is not a web browser \n1.MOSAIC\t\t2.WWW\n3.Facebook\t4.Netscape navigator\n\n");  
+  
+        printf("Your answer: ");  
+        scanf("%d",&ans);  
+  
+        if(ans==3)  
+        {  
+            printf("Correct! +5 points\n\n");  
+  
+                ++count;  
+        }  
+        else  
+        {  
+            printf("Wrong answer! Correct answer is 3.Facebook\n\n");  
+        }  
+  
+  
+        printf("Q(4).In computer world Trojan refer to \n1.Virus\t2.Malware\n3.Worm\t4.Spyware\n\n");  
+        printf("Your answer: ");  
+        scanf("%d",&ans);  
+        if(ans==2)  
+        {  
+            printf("Correct! +5 points\n\n");  
+  
+                ++count;  
+        }  
+        else  
+        {  
+            printf("Wrong answer! Correct answer is 2.Malware\n\n");  
+        }  
+  
+        printf("Q(5).Which of the following is a programming language \n1.HTTP\t2.HTML\n3.HPML\t4.FTP\n\n");  
+        printf("Your answer: ");  
+        scanf("%d",&ans);  
+        if(ans==2)  
+        {  
+            printf("Correct! +5 points\n\n");  
+  
+                ++count;  
+        }  
+        else  
+        {  
+            printf("Wrong answer! Correct answer is 2.HTML\n\n");  
+        }  
+  
+      
+        
+  
+     
+  
+  
+          
+        if(count > 0)  
+        {  
+                printf("Thanks for playing, Your scored: %d points \t", count*5);  
+  
+                p.score=count*5;  
+  
+                if(p.score >= 20)  
+                {  
+                    printf("Rating: * * * * *");  
+                    p.rat=5;  
+                }  
+                else if(p.score >=15 && p.score < 20)  
+                {  
+                    printf("Rating: * * * *");  
+                    p.rat=4;  
+                }  
+                else if(p.score >= 10 && p.score < 15)  
+                {  
+                    printf("Rating: * * *");  
+                  p.rat=3;  
+                }  
+                else if(p.score >= 5 && p.score < 10)  
+                {  
+                    printf("Rating: * *");  
+                    p.rat=2;  
+                }  
+                else if(p.score < 5)  
+                {  
+                    printf("Rating: *");  
+                     p.rat=1;  
+                }  
+  
+            
+  
+                    fprintf(fp,"%s %d %d", p.name,p.score,p.rat);  
+                    fclose(fp);  
+        }  
+        else  
+        {  
+            printf("Try again!");  
+        }  
+}  
+  
